@@ -250,6 +250,15 @@ class QasmParser:
         'ccx': QasmGateStatement(qasm_gate='ccx', num_params=0, num_args=3, cirq_gate=ops.CCX),
         'sdg': QasmGateStatement(qasm_gate='sdg', num_params=0, num_args=1, cirq_gate=ops.S**-1),
         'tdg': QasmGateStatement(qasm_gate='tdg', num_params=0, num_args=1, cirq_gate=ops.T**-1),
+        'rxx': QasmGateStatement(
+            qasm_gate='rxx', num_params=1, num_args=2, 
+            cirq_gate=(lambda params: ops.XXPowGate(exponent=params[0] / np.pi, global_shift = 0))),
+        'ryy': QasmGateStatement(
+            qasm_gate='ryy', num_params=1, num_args=2,
+            cirq_gate=(lambda params: ops.YYPowGate(exponent=params[0] / np.pi, global_shift = 0))),
+        'ryy': QasmGateStatement(
+            qasm_gate='rzz', num_params=1, num_args=2,
+            cirq_gate=(lambda params: ops.ZZPowGate(exponent=params[0] / np.pi, global_shift = 0))),
     }
 
     all_gates = {**basic_gates, **qelib_gates}
