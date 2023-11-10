@@ -256,7 +256,7 @@ class QasmParser:
         'ryy': QasmGateStatement(
             qasm_gate='ryy', num_params=1, num_args=2,
             cirq_gate=(lambda params: ops.YYPowGate(exponent=params[0] / np.pi, global_shift = 0))),
-        'ryy': QasmGateStatement(
+        'rzz': QasmGateStatement(
             qasm_gate='rzz', num_params=1, num_args=2,
             cirq_gate=(lambda params: ops.ZZPowGate(exponent=params[0] / np.pi, global_shift = 0))),
     }
