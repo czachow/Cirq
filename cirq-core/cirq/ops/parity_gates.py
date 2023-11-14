@@ -132,6 +132,10 @@ class XXPowGate(gate_features.InterchangeableQubitsGate, eigen_gate.EigenGate):
             f'cirq.XXPowGate(exponent={proper_repr(self._exponent)}, '
             f'global_shift={self._global_shift!r})'
         )
+    
+    def _qasm_(self, args: 'cirq.QasmArgs', qubits: Tuple['cirq.Qid', ...]) -> Optional[str]:
+        args.validate_version('2.0')
+        return args.format('rxx({0:half_turns}) {1}, {2};\n', self._exponent, qubits[0], qubits[1])
 
 
 @value.value_equality
@@ -237,6 +241,10 @@ class YYPowGate(gate_features.InterchangeableQubitsGate, eigen_gate.EigenGate):
             f'cirq.YYPowGate(exponent={proper_repr(self._exponent)}, '
             f'global_shift={self._global_shift!r})'
         )
+    
+    def _qasm_(self, args: 'cirq.QasmArgs', qubits: Tuple['cirq.Qid', ...]) -> Optional[str]:
+        args.validate_version('2.0')
+        return args.format('ryy({0:half_turns}) {1}, {2};\n', self._exponent, qubits[0], qubits[1])
 
 
 @value.value_equality
@@ -316,6 +324,10 @@ class ZZPowGate(gate_features.InterchangeableQubitsGate, eigen_gate.EigenGate):
             f'cirq.ZZPowGate(exponent={proper_repr(self._exponent)}, '
             f'global_shift={self._global_shift!r})'
         )
+    
+    def _qasm_(self, args: 'cirq.QasmArgs', qubits: Tuple['cirq.Qid', ...]) -> Optional[str]:
+        args.validate_version('2.0')
+        return args.format('rxx({0:half_turns}) {1}, {2};\n', self._exponent, qubits[0], qubits[1])
 
 
 class MSGate(XXPowGate):
